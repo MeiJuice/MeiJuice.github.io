@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://meijuice.github.io/favicon.ico?v=1603424392882">
+<link rel="shortcut icon" href="https://meijuice.github.io/favicon.ico?v=1603426182193">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://meijuice.github.io/styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://meijuice.github.io">
-        <img class="avatar" src="https://meijuice.github.io/images/avatar.png?v=1603424392882" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://meijuice.github.io/images/avatar.png?v=1603426182193" alt="" width="32px" height="32px">
       </a>
       <a href="https://meijuice.github.io">
         <h1 class="site-title">Gridea</h1>
@@ -86,22 +86,46 @@
             
           </div>
           <div class="post-content">
-            <h1 id="目前已知应用最为广泛的深度学习算法有两种一种是卷积神经网络convolution-neural-network擅长图像识别另外一种是长短期记忆网络long-short-term-memory-network擅长语音识别">目前已知应用最为广泛的深度学习算法有两种：一种是卷积神经网络(convolution  neural network)：擅长图像识别；另外一种是长短期记忆网络(Long short-term memory network)：擅长语音识别</h1>
-<p>现在我们讨论最简单的，多层感知器MLP。简单来说就分为三个部分：输入层，隐藏层，输出层。通过连接多个特征值，经过线性和非线性的组合，最终达到一个目标，这个目标可以是识别这个图片是不是一只猫，是不是一条狗或者属于哪个分布。</p>
+            <h1 id="多层感知器mlp">多层感知器MLP</h1>
+<p>目前已知应用最为广泛的深度学习算法有两种：一种是卷积神经网络(convolution  neural network)：擅长图像识别；另外一种是长短期记忆网络(Long short-term memory network)：擅长语音识别<br>
+现在我们讨论最简单的，多层感知器MLP。简单来说就分为三个部分：输入层，隐藏层，输出层。通过连接多个特征值，经过线性和非线性的组合，最终达到一个目标，这个目标可以是识别这个图片是不是一只猫，是不是一条狗或者属于哪个分布。</p>
 <p><img src="https://meijuice.github.io/post-images/1603424305640.png" alt="" loading="lazy"><br>
 首先我们先对图中的参数做一个解释：<br>
 其中，第0层(输入层)，我们将x1，x2和x3向量化为X；<br>
 0层和1层(隐层)之间，存在权重w1(x1到各个隐层)，w2...w4，向量化为W[1]，其中[1]表示第1层的权重，偏置b同理；<br>
 对于第1层，计算公式为：<br>
-Z[1] = W[1]X + b[1]<br>
-A[1] = sigmoid(Z[1])<br>
+<strong>Z[1] = W[1]X + b[1]</strong><br>
+<strong>A[1] = sigmoid(Z[1])</strong><br>
 其中Z为输入值的线性组合，A为Z通过激活函数sigmoid的值，对于第1层的输入值为X，输出值为A，也是下一层的输入值；<br>
 1层和2层(输出层)之间，与0层和1层之间类似，其计算公式如下：<br>
-Z[2] = W[2]A[1] + b[2]<br>
-A[2] = sigmoid(Z[2])<br>
+<strong>Z[2] = W[2]A[1] + b[2]</strong><br>
+<strong>A[2] = sigmoid(Z[2])</strong><br>
 yhat = A[2]<br>
 其中yhat即为本次神经网络的输出值。</p>
-<h1 id="这里面有意思的是虽然名字叫做神经网络但是和生物层面上的神经网络有较大的差距-在人脑当中神经元只有两种状态激发态和非激发态对应来说就应该是0或者1但是在深度学习的神经网络当中可以是01区间内的任意实数">这里面有意思的是，虽然名字叫做神经网络，但是和生物层面上的神经网络有较大的差距。在人脑当中，神经元只有两种状态，激发态和非激发态，对应来说就应该是0或者1，但是在深度学习的神经网络当中，可以是[0,1]区间内的任意实数。</h1>
+<h1 id="激活函数">激活函数</h1>
+<p>这里面有意思的是，虽然名字叫做神经网络，但是和生物层面上的神经网络有较大的差距。<br>
+在人脑当中，神经元只有两种状态，激发态和非激发态，对应来说就应该是0或者1，但是在深度学习的神经网络当中，可以是[0,1]区间内的任意实数。<br>
+仔细看上面的处理过程会发现，权值与上一层的节点相乘的结果有可能不会在[0,1]区间上，所以我们引用了一个<strong>激活函数</strong>来对Z[i]进行处理。简单来说就是把正无穷到负无穷的数值映射到[0,1]上。</p>
+<p>常用的激活函数有那么几种，Sigmoid函数：a = 1 / (https://meijuice.github.io/post-images/1603424867146.png)，ReLU函数(修正线性单元)：a = max(0，z)，Leaky ReLU函数：a = max(0.01，z)。<br>
+上述四种激活函数对应的函数图像如下图：<br>
+<img src="https://meijuice.github.io/post-images/1603424923497.png" alt="" loading="lazy"></p>
+<p>对于激活函数的选择，是神经网络中很重要的一步，对比sigmoid函数和tanh函数在不同层的使用效果：<br>
+隐藏层：tanh函数的表现要好于sigmoid函数，因为tanh的取值范围在[-1，1]之间，均值为0，实际上气到了归一化(使图像分布在0周围，得到的结果更方便使用梯度下降)的效果。<br>
+输出层：对于二分类而言，实际上是在计算yhat的概率，在[0，1]之间，所以sigmoid函数更优。<br>
+然而在sigmoid函数和ReLU函数中，当Z很大或很小时，Z的导数会变得很小，趋紧于0，这也称为梯度消失，会影响神经网络的训练效率。<br>
+ReLU函数弥补了二者的缺陷，当z&gt;0时，梯度始终为1，从而提高神经网络的运算速度。然而当z&lt;0时，梯度始终为0。但在实际应用中，该缺陷影响不是很大。<br>
+Leaky ReLU是对ReLU的补偿，在z&lt;0时，保证梯度不为0。<br>
+总结而言<br>
+在选择激活函数的时候，如果不知道该选什么的时候就选择ReLU，当然具体训练中，需要我们去探索哪种函数更适合。</p>
+<h1 id="损失函数">损失函数</h1>
+<p>比方说你要训练一个识别手写数值的模型，那你怎么去通过数据去计算到你的模型的准确性呢，这里引入一个概念叫做<strong>损失函数</strong>。<br>
+事实上，我们一般不使用平方差来作为二分类问题的损失函数，因为平方差损失函数一般是非凸函数，我们可能会得到局部最优解，而不是全局最优解。因此我们选择如下函数：<br>
+<img src="https://meijuice.github.io/post-images/1603425816228.png" alt="" loading="lazy"><br>
+y为样本真实值，yhat为样本预测值；<br>
+当y=1时，yhat越接近1，L(yhat，y)越接近0，表示预测效果越好；<br>
+当y=0时，yhat越接近0，L(yhat，y)越接近0，预测效果越好。<br>
+那么我们的目标即为使损失函数到达最小值，其中损失函数针对单个样本。<br>
+既然单个样本的损失函数已经可以通过测试知道了，那么对所有样本的损失函数进行平均也就知道这个模型的训练准确情况。</p>
 
           </div>
         </div>

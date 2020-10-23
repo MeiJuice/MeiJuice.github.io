@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>关于 | Gridea</title>
+<title>神经网络结构 | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,19 +80,41 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">关于</h2>
+          <h2 class="post-title">神经网络结构</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2019-01-25</span>
+            <span><i class="icon-calendar-outline"></i> 2020-10-22</span>
             
           </div>
           <div class="post-content">
-            <h2 id="关于本站一个从零开始学深度学习的菜鸡周志站对任何内容都可以来提意见">🏠 关于本站：一个从零开始学深度学习的菜鸡周志站，对任何内容都可以来提意见</h2>
-<h2 id="联系744491020qqcom">📬 联系：744491020@qq.com</h2>
+            <h1 id="目前已知应用最为广泛的深度学习算法有两种一种是卷积神经网络convolution-neural-network擅长图像识别另外一种是长短期记忆网络long-short-term-memory-network擅长语音识别">目前已知应用最为广泛的深度学习算法有两种：一种是卷积神经网络(convolution  neural network)：擅长图像识别；另外一种是长短期记忆网络(Long short-term memory network)：擅长语音识别</h1>
+<p>现在我们讨论最简单的，多层感知器MLP。简单来说就分为三个部分：输入层，隐藏层，输出层。通过连接多个特征值，经过线性和非线性的组合，最终达到一个目标，这个目标可以是识别这个图片是不是一只猫，是不是一条狗或者属于哪个分布。</p>
+<p><img src="https://meijuice.github.io/post-images/1603424305640.png" alt="" loading="lazy"><br>
+首先我们先对图中的参数做一个解释：<br>
+其中，第0层(输入层)，我们将x1，x2和x3向量化为X；<br>
+0层和1层(隐层)之间，存在权重w1(x1到各个隐层)，w2...w4，向量化为W[1]，其中[1]表示第1层的权重，偏置b同理；<br>
+对于第1层，计算公式为：<br>
+Z[1] = W[1]X + b[1]<br>
+A[1] = sigmoid(Z[1])<br>
+其中Z为输入值的线性组合，A为Z通过激活函数sigmoid的值，对于第1层的输入值为X，输出值为A，也是下一层的输入值；<br>
+1层和2层(输出层)之间，与0层和1层之间类似，其计算公式如下：<br>
+Z[2] = W[2]A[1] + b[2]<br>
+A[2] = sigmoid(Z[2])<br>
+yhat = A[2]<br>
+其中yhat即为本次神经网络的输出值。</p>
+<h1 id="这里面有意思的是虽然名字叫做神经网络但是和生物层面上的神经网络有较大的差距-在人脑当中神经元只有两种状态激发态和非激发态对应来说就应该是0或者1但是在深度学习的神经网络当中可以是01区间内的任意实数">这里面有意思的是，虽然名字叫做神经网络，但是和生物层面上的神经网络有较大的差距。在人脑当中，神经元只有两种状态，激发态和非激发态，对应来说就应该是0或者1，但是在深度学习的神经网络当中，可以是[0,1]区间内的任意实数。</h1>
 
           </div>
         </div>
 
         
+          <div class="next-post">
+            <a class="purple-link" href="https://meijuice.github.io/post/di-yi-zhou-zhou-zhi-chu-bu-liao-jie-shen-du-xue-xi/">
+              <h3 class="post-title">
+                下一篇：第一周周志：初步了解深度学习
+              </h3>
+            </a>
+          </div>
+          
       </div>
 
       
